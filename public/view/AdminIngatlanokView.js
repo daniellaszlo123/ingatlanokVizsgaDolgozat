@@ -1,10 +1,10 @@
 import AdminIngatlanView from "./AdminIngatlanView.js"
 
-class AdminIngatlanokView{
-    constructor(szuloelem, adat){
+class AdminIngatlanokView {
+    constructor(szuloelem, adat) {
         szuloelem.html("")
         szuloelem.append(`
-            <table class="table">
+            <table class="table table-responsive">
                 <thead>
                     <th scope="col">Kategória</th>
                     <th scope="col">Leírás</th>

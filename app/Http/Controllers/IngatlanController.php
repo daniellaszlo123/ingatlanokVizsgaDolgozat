@@ -22,15 +22,6 @@ class IngatlanController extends Controller
         ")));
     }
 
-    public function kategNevSzerint($nev)
-    {
-        return response()->json(DB::select(DB::raw("
-            SELECT k.id
-            FROM kategorias k
-            WHERE k.nev='@{$nev}'
-        ")));
-    }
-
     public function egyIngatlan($id)
     {
         return response()->json(Ingatlan::find($id));
@@ -44,9 +35,7 @@ class IngatlanController extends Controller
     public function ujIngatlan(Request $req)
     {
         $ingatlan = new Ingatlan();
-        $kateg = $req->kategoria;
-        $kategId = kategNevSzerint($kateg);
-        $ingatlan->kategoria=$kategId[count($kategId)-1];
+        $ingatlan->kategoria=$req->kategoria;;
         $ingatlan->leiras=$req->leiras;
         $ingatlan->tehermentes=$req->tehermentes;
         $ingatlan->ar=$req->ar;
