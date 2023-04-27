@@ -17,6 +17,11 @@ class KategoriaController extends Controller
         return response()->json(Kategoria::find($id));
     }
 
+    public function kategTorles($id)
+    {
+        Kategoria::find($id)->delete();
+    }
+
     public function ujKateg(Request $req)
     {
         $kateg = new Kategoria();

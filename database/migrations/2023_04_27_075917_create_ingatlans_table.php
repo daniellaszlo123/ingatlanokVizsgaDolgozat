@@ -16,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('ingatlans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("kategoria")->references("id")->on("kategoriaks");
+            $table->foreignId("kategoria")->references("id")->on("kategorias");
             $table->string("leiras");
-            $table->date("hirdetesDatuma");
+            $table->date("hirdetesDatuma")->default(now());
             $table->boolean("tehermentes");
-            $table->int("ar");
+            $table->integer("ar");
             $table->string("kepUrl");
             $table->timestamps();
         });

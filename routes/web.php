@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IngatlanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get("/api/ingatlanok", [IngatlanController::class, "osszesIngatlanKateggel"]);
+Route::post("/api/ujingatlan", [IngatlanController::class, "ujIngatlan"]);
+Route::delete("/api/ingatlantorol", [IngatlanController::class, "ingatlanTorles"]);
 
 Route::get('/', function () {
     return view('welcome');
