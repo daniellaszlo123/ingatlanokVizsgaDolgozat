@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ingatlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class IngatlanController extends Controller
 {
@@ -21,6 +22,15 @@ class IngatlanController extends Controller
         ")));
     }
 
+    public function kategNevSzerint($nev)
+    {
+        return response()->json(DB::select(DB::raw("
+            SELECT k.id
+            FROM kategorias k
+            WHERE k.nev='@{$nev}'
+        ")));
+    }
+
     public function egyIngatlan($id)
     {
         return response()->json(Ingatlan::find($id));
@@ -34,9 +44,10 @@ class IngatlanController extends Controller
     public function ujIngatlan(Request $req)
     {
         $ingatlan = new Ingatlan();
-        $ingatlan->kategoria=$req->kategoria;
+        $kateg = $req->kategoria;
+        $kategId = kategNevSzerint($kateg);
+        $ingatlan->kategoria=$kategId[count($kategId)-1];
         $ingatlan->leiras=$req->leiras;
-        $ingatlan->hirdetesDatuma=$req->hirdetesDatuma;
         $ingatlan->tehermentes=$req->tehermentes;
         $ingatlan->ar=$req->ar;
         $ingatlan->kepUrl=$req->kepUrl;

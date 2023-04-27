@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IngatlanController;
+use App\Http\Controllers\KategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get("/api/ingatlanok", [IngatlanController::class, "osszesIngatlanKateggel"]);
 Route::post("/api/ujingatlan", [IngatlanController::class, "ujIngatlan"]);
 Route::delete("/api/ingatlantorol", [IngatlanController::class, "ingatlanTorles"]);
+Route::get("/api/kategoriak", [KategoriaController::class, "osszesKateg"]);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fooldal');
 });
